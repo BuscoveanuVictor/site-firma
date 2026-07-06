@@ -40,7 +40,7 @@
     overflow-x: hidden;
   }
 
-  /* ── GRID NOISE TEXTURE OVERLAY ── */
+  /* ── SOFT BACKGROUND GLOW (subtle, no grid/terminal feel) ── */
   body::before {
     content: '';
     position: fixed;
@@ -48,9 +48,8 @@
     pointer-events: none;
     z-index: 0;
     background-image:
-      linear-gradient(rgba(75,159,225,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(75,159,225,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
+      radial-gradient(circle at 15% 8%, rgba(75,159,225,0.05) 0%, transparent 45%),
+      radial-gradient(circle at 85% 92%, rgba(75,159,225,0.04) 0%, transparent 45%);
   }
 
   /* ── NAVBAR ── */
@@ -106,7 +105,7 @@
     text-decoration: none;
     border: 1px solid var(--accent-dim);
     padding: 0.55rem 1.4rem;
-    border-radius: 3px;
+    border-radius: 20px;
     transition: background 0.2s, color 0.2s;
   }
 
@@ -162,7 +161,7 @@
     color: var(--accent);
     border: 1px solid var(--border-mid);
     padding: 0.4rem 1rem;
-    border-radius: 2px;
+    border-radius: 20px;
     margin-bottom: 2.2rem;
     background: rgba(75,159,225,0.05);
   }
@@ -214,7 +213,7 @@
     color: var(--navy);
     background: var(--accent);
     padding: 1rem 2.2rem;
-    border-radius: 3px;
+    border-radius: 10px;
     text-decoration: none;
     border: none;
     cursor: pointer;
@@ -272,18 +271,23 @@
   }
 
   .section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     font-size: 0.72rem;
     font-weight: 700;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--accent);
     margin-bottom: 1rem;
   }
 
   .section-tag::before {
-    content: '//';
-    margin-right: 6px;
-    opacity: 0.6;
+    content: '';
+    width: 18px; height: 1px;
+    background: var(--accent);
+    display: inline-block;
+    opacity: 0.7;
   }
 
   h2 {
@@ -322,7 +326,7 @@
     gap: 1px;
     background: var(--border);
     border: 1px solid var(--border);
-    border-radius: 4px;
+    border-radius: 14px;
     overflow: hidden;
   }
 
@@ -350,7 +354,7 @@
   .service-icon {
     width: 48px; height: 48px;
     border: 1px solid var(--border-mid);
-    border-radius: 4px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -409,7 +413,7 @@
     aspect-ratio: 16/9;
     background: var(--navy-mid);
     border: 1px solid var(--border-mid);
-    border-radius: 6px;
+    border-radius: 16px;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -424,14 +428,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background:
-      repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(75,159,225,0.03) 2px,
-        rgba(75,159,225,0.03) 4px
-      );
+    background: radial-gradient(circle at center, rgba(75,159,225,0.08) 0%, transparent 70%);
     pointer-events: none;
   }
 
@@ -532,7 +529,7 @@
     gap: 1px;
     background: var(--border);
     border: 1px solid var(--border);
-    border-radius: 4px;
+    border-radius: 14px;
     overflow: hidden;
     align-self: start;
   }
@@ -611,7 +608,7 @@
   .contact-detail-icon {
     width: 38px; height: 38px;
     border: 1px solid var(--border-mid);
-    border-radius: 3px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -670,7 +667,7 @@
     color: var(--white);
     background: var(--navy-mid);
     border: 1px solid var(--border);
-    border-radius: 3px;
+    border-radius: 8px;
     padding: 0.8rem 1rem;
     outline: none;
     transition: border-color 0.2s;
@@ -777,22 +774,6 @@
   .delay-4 { animation-delay: 0.46s; }
   .delay-5 { animation-delay: 0.58s; }
 
-  /* ── SCAN LINE EFFECT on video ── */
-  @keyframes scanline {
-    0% { top: -5%; }
-    100% { top: 105%; }
-  }
-
-  .scanline {
-    position: absolute;
-    left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(180deg, transparent, rgba(75,159,225,0.3), transparent);
-    animation: scanline 4s linear infinite;
-    pointer-events: none;
-    z-index: 2;
-  }
-
   /* ── TOAST ── */
   #toast {
     position: fixed;
@@ -804,7 +785,7 @@
     font-size: 0.88rem;
     font-weight: 600;
     padding: 0.9rem 1.6rem;
-    border-radius: 4px;
+    border-radius: 10px;
     z-index: 999;
     transform: translateY(100px);
     opacity: 0;
@@ -852,14 +833,14 @@
   <div class="hero-bg-glow"></div>
   <div class="hero-bg-glow-2"></div>
   <div class="hero-inner">
-    <div class="hero-label animate-in">Sector Energetic · C# · VBA · Excel</div>
+    <div class="hero-label animate-in">Salut! Construim software pentru sectorul energetic</div>
     <h1 class="animate-in delay-1">
-      Eliminăm <em>Erorile Umane</em> din Raportările Energetice prin Automatizări Native.
+      Scăpați de orele pierdute cu rapoarte Excel. <em>Lăsați automatizarea</em> să facă treaba grea.
     </h1>
     <p class="hero-sub animate-in delay-2">
-      Dezvoltăm aplicații desktop securizate (C#) și automatizăm procesele complexe din Excel (VBA) pentru companiile din sectorul energetic. Creștem viteza de procesare a datelor fără costuri ascunse de licențiere RPA.
+      Construim aplicații desktop (C#) și automatizări Excel (VBA) croite pe fluxurile reale ale echipei voastre din energie — ca să vă recăpătați timpul pierdut cu date introduse manual și să dormiți liniștiți că raportările ies corect de fiecare dată.
     </p>
-    <a href="#contact" class="btn-primary animate-in delay-3">Solicită un Audit Gratuit</a>
+    <a href="#contact" class="btn-primary animate-in delay-3">Hai să vorbim — Audit Gratuit</a>
     <div class="hero-metrics animate-in delay-4">
       <div class="metric-item">
         <div class="metric-num">100<span>%</span></div>
@@ -887,10 +868,10 @@
 <section id="services">
   <div class="services-intro">
     <div>
-      <p class="section-tag">Servicii Core</p>
-      <h2>Soluții Tehnice <em>Specializate</em></h2>
+      <p class="section-tag">Cu ce te putem ajuta</p>
+      <h2>Soluții Făcute pe <em>Măsura Ta</em></h2>
     </div>
-    <p class="services-desc">Construim exclusiv pentru sectorul energetic. Fiecare soluție este adaptată fluxurilor interne specifice, fără template-uri generice.</p>
+    <p class="services-desc">Lucrăm exclusiv cu companii din energie, așa că înțelegem deja provocările voastre. Nicio soluție de-a gata — fiecare proiect e croit pe fluxul vostru real de lucru.</p>
   </div>
 
   <div class="services-grid">
@@ -901,7 +882,7 @@
         <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 8l2 2-2 2M11 10h4"/></svg>
       </div>
       <h3>Aplicații Desktop Custom (C# / .NET)</h3>
-      <p>Construim software robust, on-premise, adaptat perfect fluxurilor interne. Garantăm securitate maximă a datelor sensibile prin eliminarea dependenței de platforme cloud externe.</p>
+      <p>Îți construim un program care face exact ce ai nevoie, pe calculatoarele voastre, fără costuri lunare de cloud. Datele sensibile rămân în casă, la voi, în siguranță.</p>
     </div>
 
     <div class="service-card">
@@ -909,8 +890,8 @@
       <div class="service-icon">
         <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
       </div>
-      <h3>Automatizări Avansate Excel (VBA)</h3>
-      <p>Transformăm fișierele Excel lente și predispuse la erori în instrumente de calcul instantaneu. Automatizăm importul de date, reconcilierile și generarea rapoartelor către autorități (ANRE).</p>
+      <h3>Automatizări Excel (VBA)</h3>
+      <p>Transformăm fișierul acela uriaș și încet din Excel într-un instrument care lucrează în locul vostru. Import de date, reconcilieri și rapoarte pentru ANRE — totul cu un singur click.</p>
     </div>
 
     <div class="service-card">
@@ -918,8 +899,8 @@
       <div class="service-icon">
         <svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M6 9v2a2 2 0 002 2h8a2 2 0 002-2V9M12 11v6"/></svg>
       </div>
-      <h3>Integrare Sisteme Legacy</h3>
-      <p>Creăm punți de legătură între sistemele software vechi și noile fluxuri de lucru. Extragem, curățăm și structurăm volume uriașe de date energetice cu precizie de 100%.</p>
+      <h3>Integrare Sisteme Vechi</h3>
+      <p>Ai sisteme mai vechi care nu comunică între ele? Le facem să "vorbească", astfel încât datele voastre să circule fără copiere manuală și fără greșeli de transcriere.</p>
     </div>
 
   </div>
@@ -931,21 +912,20 @@
 <section id="proof">
   <div class="proof-layout">
     <div class="proof-video-wrap" title="Demo video placeholder">
-      <div class="scanline"></div>
       <div class="play-btn">
         <svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>
       </div>
-      <span class="video-label">Demo · Procesare Automată Date Energetice</span>
+      <span class="video-label">Demo · Cum arată automatizarea în practică</span>
     </div>
 
     <div class="proof-text">
-      <p class="section-tag">Proof of Concept</p>
-      <h2>Un Macro VBA care Procesează <em>10.000+</em> Rânduri în Secunde</h2>
+      <p class="section-tag">Vezi Cum Funcționează</p>
+      <h2>De la <em>4-6 Ore</em> de Muncă Manuală, la <em>30 de Secunde</em></h2>
       <p>
-        Demonstrăm live cum un fișier Excel cu date de consum energetic brute — primit de la un distribuitor — este importat, validat, reconciliat și exportat ca raport ANRE în mai puțin de 30 de secunde.
+        Îți arătăm pas cu pas cum un fișier Excel cu date brute de consum — primit de la un distribuitor — este importat, verificat, reconciliat și transformat automat într-un raport ANRE gata de trimis.
       </p>
       <p>
-        Același proces realizat manual necesită în medie 4-6 ore și introduce un risc constant de eroare umană. Automatizarea noastră elimină complet acest risc, păstrând datele exclusiv în infrastructura voastră.
+        Același proces, făcut manual, ține pe cineva din echipă ocupat 4-6 ore și tot mai rămâne loc de o greșeală de neatenție. Cu automatizarea noastră, apeși un buton, iar datele rămân tot timpul în siguranță, pe infrastructura voastră.
       </p>
       <div class="proof-stats">
         <div class="proof-stat">
@@ -972,35 +952,35 @@
   <div class="why-layout">
     <div class="why-text">
       <p class="section-tag">De ce Vicos?</p>
-      <h2>Performanță fără <em>Licențe</em> Costisitoare.</h2>
+      <h2>Fără <em>Abonamente</em>. Fără Surprize.</h2>
       <p>
-        Abordarea noastră este diferită. În loc să vă vindem abonamente anuale pentru platforme RPA externe, construim soluțiile direct în ecosistemul Microsoft pe care îl folosiți deja.
+        Suntem o echipă mică și lucrăm direct cu tine, fără departamente de vânzări între noi. În loc să vă vindem un abonament anual la o platformă RPA scumpă, construim soluția direct în Excel și Windows-ul pe care le folosiți deja.
       </p>
       <p>
-        Plătiți doar pentru dezvoltare, iar codul vă aparține integral, asigurând un ROI (Return of Investment) imediat. Fără vendor lock-in. Fără costuri recurente ascunse.
+        Plătești o singură dată, pentru dezvoltare, iar codul rămâne al vostru pentru totdeauna. Nu ești legat de noi și nu vei primi facturi surpriză luna viitoare.
       </p>
     </div>
 
     <div class="why-pillars">
       <div class="pillar">
-        <div class="pillar-icon">Securitate</div>
-        <h4>Date 100% On-Premise</h4>
-        <p>Niciun byte din datele sensibile nu părăsește infrastructura voastră. Zero dependențe cloud.</p>
+        <div class="pillar-icon">Siguranță</div>
+        <h4>Datele Rămân la Voi</h4>
+        <p>Nimic nu iese din infrastructura voastră spre servere externe. Confidențialitatea e regula, nu excepția.</p>
       </div>
       <div class="pillar">
-        <div class="pillar-icon">Cost Zero</div>
-        <h4>Fără Licențe RPA</h4>
-        <p>Codul livrat vă aparține. Nu există abonamente anuale sau taxe per utilizator.</p>
+        <div class="pillar-icon">Fără Costuri Ascunse</div>
+        <h4>Plătești o Singură Dată</h4>
+        <p>Codul e al vostru pentru totdeauna. Fără abonamente lunare, fără taxe per utilizator.</p>
       </div>
       <div class="pillar">
-        <div class="pillar-icon">Precizie</div>
-        <h4>Acuratețe Garantată</h4>
-        <p>Algoritmii de validare elimină erorile umane și inconsistențele de date la sursă.</p>
+        <div class="pillar-icon">Încredere</div>
+        <h4>Verificat de Fiecare Dată</h4>
+        <p>Validăm automat fiecare set de date, ca să nu mai stai cu grija că a scăpat o greșeală.</p>
       </div>
       <div class="pillar">
-        <div class="pillar-icon">Integrare</div>
-        <h4>Ecosistem Microsoft</h4>
-        <p>Construim pe platformele pe care le cunoașteți deja: Excel, .NET, SQL Server.</p>
+        <div class="pillar-icon">Familiar</div>
+        <h4>Pe Unelte pe Care le Știi</h4>
+        <p>Nimic nou de învățat — construim pe Excel, Windows și .NET, exact ce folosiți deja zi de zi.</p>
       </div>
     </div>
   </div>
@@ -1012,9 +992,9 @@
 <section id="contact">
   <div class="contact-layout">
     <div class="contact-info">
-      <p class="section-tag">Contact</p>
-      <h2>Solicită o <em>Consultație</em> Tehnică</h2>
-      <p>Discutăm gratuit despre procesele actuale din compania dumneavoastră și identificăm oportunități concrete de automatizare cu impact imediat.</p>
+      <p class="section-tag">Hai să Vorbim</p>
+      <h2>Spune-ne ce te <em>Încetinește</em></h2>
+      <p>Nicio obligație, nicio prezentare de vânzări — doar o discuție despre procesele voastre actuale, ca să vedem împreună unde poate ajuta o automatizare.</p>
 
       <div class="contact-detail">
         <div class="contact-detail-icon">
@@ -1074,21 +1054,21 @@
         <label for="service">Serviciu de Interes</label>
         <select id="service">
           <option value="">Selectează un serviciu...</option>
-          <option>Aplicații Desktop Custom (C# / .NET)</option>
-          <option>Automatizări Avansate Excel / VBA</option>
-          <option>Integrare Sisteme Legacy</option>
+          <option>Aplicație Desktop Custom (C# / .NET)</option>
+          <option>Automatizare Excel / VBA</option>
+          <option>Integrare Sisteme Vechi</option>
           <option>Audit Tehnic Gratuit</option>
           <option>Altceva / Nu știu încă</option>
         </select>
       </div>
 
       <div class="form-group">
-        <label for="message">Descrieți pe scurt procesul sau problema</label>
+        <label for="message">Povestește-ne pe scurt ce te încurcă</label>
         <textarea id="message" placeholder="Ex: Avem un raport Excel lunar cu 15.000 rânduri pe care îl procesăm manual în 5 ore. Vrem să automatizăm exportul către ANRE..."></textarea>
       </div>
 
       <div class="form-submit">
-        <p class="form-note">Răspundem în maxim 24h lucrătoare. Audit tehnic 100% gratuit și fără obligații.</p>
+        <p class="form-note">Îți răspundem în maxim 24h lucrătoare. Auditul e 100% gratuit, fără obligații.</p>
         <button type="submit" class="btn-primary" style="white-space:nowrap">Trimite Mesajul</button>
       </div>
     </form>
@@ -1106,7 +1086,7 @@
   </ul>
 </footer>
 
-<div id="toast">✓ Mesaj trimis! Vă contactăm în 24h.</div>
+<div id="toast">✓ Mulțumim! Te contactăm în cel mult 24h.</div>
 
 <script>
   function handleSubmit(e) {
